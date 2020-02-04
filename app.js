@@ -108,8 +108,9 @@ function darkmode() {
             linkbtn.style.background = "black";
             ilink.style.color = "white";
             linkbtn.style.color = "white";
-            sbar.style.background = "rgba(0,0,0,0.5)";
+            sbar.style.background = "#141413";
             sbar.style.color = "white";
+            //gamemode.style.color = "black";
         } else {
             body.style.transition = "all 2s linear";
             body.style.background = "#323232";
