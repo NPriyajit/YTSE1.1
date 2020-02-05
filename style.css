@@ -84,16 +84,40 @@ h1 {
     display: none;
 }
 
-.searchmsg::before {
-    content: '';
-    position: absolute;
-    background: white;
-    width: 13%;
-    height: 80%;
-    top: 25%;
-    left: 50%;
-    z-index: -12;
-    transform: rotate(135deg);
+
+.buttonnew{
+position:absolute;
+width:130px;
+border-radius:3px;
+height:30px;
+cursor:pointer;
+display:flex;
+justify-content:center;
+align-items:center;
+color:black;
+background:white;
+border:1px solid #ccc;
+top:4%;
+left:50%;
+transform:translate(-50%,-50%);
+transition:all 0.8s linear;
+}
+
+.buttonnew:hover{
+color:lightblue;
+width:135px;
+height:35px;
+}
+.searchmsg::before{
+content:'';
+position:absolute;
+background:white;
+width:13%;
+height:80%;
+top:25%;
+left:50%;
+z-index:-12;
+transform:rotate(135deg);
 }
 
 #search:hover .searchmsg {
@@ -896,17 +920,17 @@ input[type="checkbox"] {
 
 
 
-.rotatedata::before {
+.rotatedata:before {
     content: '';
     position: absolute;
     top: -5px;
     width: 5px;
     height: 6px;
-    background-color: black;
+    background: black;
 
 }
 
-.rotatedata::after {
+.rotatedata:after {
     content: '';
     position: absolute;
     top: -8px;
@@ -1135,7 +1159,28 @@ td {
     position: absolute;
     top: 10;
     left: 10;
-    display: none;
+    display:none;
+}
+
+.digstrike{
+width:calc(166px*3);
+height:5px;
+background:#141414;
+position:absolute;
+left:0;
+display:none;
+transform:rotate(45deg) ;
+border-radius:3px;
+}
+
+.digstrike1{
+width:5px;
+display:none;
+height:calc(166px*3);
+background:#141414;
+position:absolute;
+left:0;
+transform:rotate(45deg) ;
 }
 
 
