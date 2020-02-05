@@ -59,69 +59,84 @@ function startNewGame() {
 }
 
 function strike(items, classname) {
+
   var linestrike = document.querySelector(".strike");
+  var digstrike=document.querySelector(".digstrike");
+var digstrike1=document.querySelector(".digstrike1");
   var item = items[0];
   var top = Math.floor(item.getBoundingClientRect().top);
   var left = Math.floor(item.getBoundingClientRect().left);
-  linestrike.style.display = "initial";
+ document.querySelector("table").style.pointerEvents="none";
   if (classname.includes("row")) {
+ linestrike.style.display="initial";
     linestrike.style.width = 120 * 3 + "px";
     linestrike.style.height = "6px";
     linestrike.style.top = top + 60 + "px";
     linestrike.style.left = left + "px";
-    linestrike.style.transform = 'rotate(0deg)';
   } else if (classname.includes("col")) {
-
+     linestrike.style.display="initial";
     linestrike.style.width = "6px";
     linestrike.style.height = 118 * 3 + "px";
     linestrike.style.top = top + 6 + "px";
     linestrike.style.left = left + 60 + "px";
-    linestrike.style.transform = 'rotate(0deg)';
   } else if (classname.includes("diagonal0")) {
-
-    linestrike.style.width = "6px";
-    linestrike.style.height = 118 * 3 + "px";
-    linestrike.style.top = top + 6 + "px";
-    linestrike.style.transform = 'rotate(135deg)';
-
-  } else {
-
-    linestrike.style.width = "6px";
-    linestrike.style.height = 118 * 3 + "px";
-    linestrike.style.top = top + 6 + "px";
-    linestrike.style.transform = 'rotate(45deg)';
+    digstrike.style.display="initial";
+    digstrike.style.top=top *2 -105 +  "px";
+    digstrike.style.left=left -65+  "px";
+  //  digstrike.style.transform = 'rotate(45deg) ';
+  } else if(classname.includes("diagonal1")) {
+    digstrike1.style.display="initial"; 
+digstrike1.style.top=top - 80 +  "px";
+    digstrike1.style.left = left -80 +  "px";
 
   }
 
 }
 
 
+document.querySelector(".buttonnew").addEventListener("click",()=>{
+turn="X";
+	document.getElementById("turn").textContent = "Player " + turn + "'s turn";
+   startNewGame();
+});
 /**
  * Check if a win or not
  */
 function win(clicked) {
+var cval=0;
   // Get all cell classes
   var memberOf = clicked.className.split(/\s+/);
   for (var i = 0; i < memberOf.length; i++) {
     var testClass = "." + memberOf[i];
     var items = contains("#tictactoe " + testClass, turn);
     // winning condition: turn == N_SIZE
+ 
     if (items.length == N_SIZE) {
-      strike(items, testClass);
+cval=cval+1;
+if(cval>1){
+return true;
+}
+else{
+ strike(items, testClass);
       setTimeout(() => {
-        document.querySelector(".strike").style.display = "none";
+        document.querySelector(".strike").style.display="none";
+	document.querySelector(".digstrike").style.display="none";
+	document.querySelector(".digstrike1").style.display="none";
+         document.querySelector("table").style.pointerEvents="auto";
+         turn="X";
+	document.getElementById("turn").textContent = "Player " + turn + "'s turn";
         startNewGame();
-      }, 3000);
+      }, 2200);
       if ((document.querySelector(".declarer").style.opacity = "1")) {
         document.querySelector(".declarer").style.opacity = "1";
         //} else {
         setTimeout(() => {
-          document.querySelector(".declarer").style.opacity = "0";
-        }, 3000);
+          document.querySelector(".declarer").style.opacity="0";
+        }, 2200);
       }
       document.querySelector("#complement").innerHTML = "Congratulations!";
       document.querySelector("#wintext").innerHTML = "Winner: Player " + turn;
-
+}
     }
   }
   return false;
@@ -148,7 +163,9 @@ function set() {
   moves += 1;
   score[turn] += this.identifier;
   if (win(this)) {
+setTimeout(()=>{
     startNewGame();
+},2000);
     // document.querySelector(".declarer").style.display = "initial";
   } else if (moves === N_SIZE * N_SIZE) {
     if ((document.querySelector(".declarer").style.opacity = "1")) {
