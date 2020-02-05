@@ -83,6 +83,7 @@ function darkmode() {
             linkbox.forEach(function (item) {
                 item.style.color = "black";
             });
+	  
             leftpan.style.backgroundColor = "rgba(0,22,44,0.2)";
             document.querySelector(".headlink").style.color = "#000";
             body.querySelectorAll("h1 > span ").forEach(item => {
@@ -108,9 +109,11 @@ function darkmode() {
             linkbtn.style.background = "black";
             ilink.style.color = "white";
             linkbtn.style.color = "white";
-            sbar.style.background = "#141413";
+            sbar.style.background = "#616161";
             sbar.style.color = "white";
-            //gamemode.style.color = "black";
+            gamemode.style.color = "#323232";
+	    document.querySelector(".rotatedata").style.border="5px solid #323232";
+
         } else {
             body.style.transition = "all 2s linear";
             body.style.background = "#323232";
@@ -148,6 +151,8 @@ function darkmode() {
             linkbtn.style.color = "#00796b";
             sbar.style.background = "white";
             sbar.style.color = "black";
+	    document.querySelector(".rotatedata").style.border="5px solid white";
+	   gamemode.style.color="white";
         }
     });
 }
@@ -155,6 +160,7 @@ function darkmode() {
 hamberg.addEventListener("click", function () {
     if (hamberg.firstChild.className.includes("bars")) {
         gamemode.style.display = "none";
+	leftpan.style.display="flex";
         leftpan.style.animation = "leftPan 2s linear forwards";
         document.querySelector(".headlink").style.animation =
             "linktxtop 2.5s 1.8s forwards";
@@ -165,6 +171,7 @@ hamberg.addEventListener("click", function () {
     } else {
         gamemode.style.display = "initial";
         hamberg.firstChild.className = "fas fa-bars";
+	leftpan.style.display="none";
         linkset.forEach(item => {
             item.style.animation = "none";
             item.style.opacity = "0";
@@ -235,11 +242,13 @@ ps.forEach(item => {
 
 rslider.addEventListener("click", function () {
     resizer();
+    rslider.title="double click to close";
     rslide.style.animation = "slideleft 1.4s linear forwards";
 });
 
 rslider.addEventListener("dblclick", function () {
     rslide.style.animation = "slideleft 3s linear  reverse forwards";
+    rslider.title="click to open";
     setTimeout(function () {
         rslide.style.animation = "none";
     }, 1000);
