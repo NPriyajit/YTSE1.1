@@ -43,16 +43,16 @@ var gamechanger = document.querySelector(".gamechanger");
 
 
 gamechanger.addEventListener("click", function () {
-    if (gamechanger.firstChild.className.includes("left")) {
+    if (gamechanger.firstChild.className.includes("right")) {
         gamesec1.style.left = "-100%";
         gamesec2.style.right = "0%";
         gamechanger.style.left = "2%";
-        gamechanger.firstChild.className = "fas fa-arrow-right";
+        gamechanger.firstChild.className = "fas fa-arrow-left";
     } else {
         gamesec1.style.left = "0";
         gamesec2.style.right = "-100%";
         gamechanger.style.left = "95%";
-        gamechanger.firstChild.className = "fas fa-arrow-left";
+        gamechanger.firstChild.className = "fas fa-arrow-right";
     }
 });
 
@@ -109,10 +109,10 @@ function darkmode() {
             linkbtn.style.background = "black";
             ilink.style.color = "white";
             linkbtn.style.color = "white";
-            sbar.style.background = "#616161";
+            sbar.style.background = "rgba(38, 38, 38,0.3)";
             sbar.style.color = "white";
             gamemode.style.color = "#323232";
-	    document.querySelector(".rotatedata").style.border="5px solid #323232";
+	    document.querySelector(".rotatedata").style.border="5px solid #616161";
 
         } else {
             body.style.transition = "all 2s linear";
@@ -333,9 +333,12 @@ function runScript(e) {
             elem.focus();
         } else if (data.toLowerCase() == "hello world") {
             setAnim();
-        } else {
-            window.open(`https://www.google.co.in/search?q=${data}`);
+        } else if(data.includes("https")) {
+           window.open(data);
         }
+	else{
+	 window.open(`https://www.google.co.in/search?q=${data}`);
+	}
         elem.value = "";
         elem.placeholder = 'Say "Hello World"...';
         return false;
@@ -349,9 +352,12 @@ function sear() {
         elem.focus();
     } else if (data.toLowerCase() == "hello world") {
         setAnim();
-    } else {
-        window.open(`https://www.google.co.in/search?q=${data}`);
-    }
+    } else if(data.includes("https")) {
+           window.open(data);
+        }
+	else{
+	 window.open(`https://www.google.co.in/search?q=${data}`);
+	}
     elem.value = "";
 
     elem.placeholder = 'Say "Hello World"...';
@@ -373,3 +379,31 @@ window.addEventListener("resize", resizer);
 
 resizer();
 darkmode();
+
+
+
+function runLink(e) {
+    if (e.keyCode == 13) {
+         link = ilink.value;
+    if (link != "") {
+        if (link.includes("list")) {
+            divider = link.split("/watch");
+            fullstring = `${divider[0]}/embed/watch${divider[1]}`;
+            iframe.src = fullstring;
+		   ilink.value="";
+        }else if(link.includes("youtube")) {
+            divider = link.split("=");
+            fullstring = `https://www.youtube.com/embed/${divider[1]}${extendLink}`;
+            iframe.src = fullstring;
+  	    ilink.value="";
+        }
+	else{
+  	   iframe.src=link;
+	}
+    }
+ else {
+        ilink.focus();
+    }
+}
+
+}
