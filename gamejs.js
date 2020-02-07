@@ -86,8 +86,8 @@ var digstrike1=document.querySelector(".digstrike1");
   //  digstrike.style.transform = 'rotate(45deg) ';
   } else if(classname.includes("diagonal1")) {
     digstrike1.style.display="initial"; 
-digstrike1.style.top=top - 80 +  "px";
-    digstrike1.style.left = left -80 +  "px";
+    digstrike1.style.top=top - 70 +  "px";
+    digstrike1.style.left = left -60 +  "px";
 
   }
 
@@ -96,8 +96,8 @@ digstrike1.style.top=top - 80 +  "px";
 
 document.querySelector(".buttonnew").addEventListener("click",()=>{
 turn="X";
-	document.getElementById("turn").textContent = "Player " + turn + "'s turn";
-   startNewGame();
+document.getElementById("turn").textContent = "Player " + turn + "'s turn";
+startNewGame();
 });
 /**
  * Check if a win or not
